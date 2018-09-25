@@ -1,0 +1,17 @@
+#!/usr/bin/env docker.sh
+
+# see https://github.com/payfazz/docker-sh for more information about this file
+
+name=postgres-$dirsum
+image=postgres:10-alpine
+opts="
+  -p 127.0.0.1:5432:5432
+  -v '$name-data:/var/lib/postgresql/data'
+  -e POSTGRES_USER=testuser
+  -e POSTGRES_PASSWORD=testpassword
+  -e POSTGRES_DB=testdb
+"
+
+command_rmvol() {
+  docker volume rm "$name-data" > /dev/null
+}

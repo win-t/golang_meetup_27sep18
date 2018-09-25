@@ -1,0 +1,2 @@
+These codes do not follow any best practice, but it may contain some tricks, so it worth to read it.
+it's just for the demo, do not write code like these in real life code.

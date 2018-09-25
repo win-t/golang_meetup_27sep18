@@ -1,0 +1,4 @@
+[submodule "demo/4/_luajit"]
+	path = demo/4/_luajit
+	url = http://luajit.org/git/luajit-2.0.git
+	branch = master
