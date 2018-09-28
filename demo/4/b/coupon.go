@@ -40,8 +40,8 @@ func executeCoupon(s storage, uid int, couponName string, commit bool) int {
 
 	C.coupon_bootstrap(L, C.uint32_t(execID))
 
-	codeCstr := C.CString(c.code)
-	defer C.free(unsafe.Pointer(codeCstr))
+	codeCstr := C.CString(c.code)          // we own this mem
+	defer C.free(unsafe.Pointer(codeCstr)) // so it's our responsibility to free it
 
 	var retval C.int
 
@@ -71,6 +71,7 @@ func executeCoupon(s storage, uid int, couponName string, commit bool) int {
 	return result
 }
 
+// this function is helper to get golang string type from lua stack
 func couponHelperLuaTostring(state *C.lua_State, index C.int) string {
 	var errmsgLen C.size_t
 	errmsgPtr := C.lua_tolstring(state, index, &errmsgLen)

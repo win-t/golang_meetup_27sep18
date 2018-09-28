@@ -4,6 +4,10 @@ import (
 	"sync"
 )
 
+// you cannot pass golang type to C world
+// so we use indirection
+// we use uint32_t as the key, because uint32_t is subset of C.double (C.lua_Number)
+
 var execstorage = struct {
 	sync.RWMutex
 	next uint32

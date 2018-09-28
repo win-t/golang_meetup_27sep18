@@ -37,8 +37,8 @@ func main() {
 		print(fact(6))
 		print("Hello from lua")
 	`
-	simpleLuaProgramPtr := C.CString(simpleLuaProgram)
-	defer C.free(unsafe.Pointer(simpleLuaProgramPtr))
+	simpleLuaProgramPtr := C.CString(simpleLuaProgram) // we own this mem
+	defer C.free(unsafe.Pointer(simpleLuaProgramPtr))  // so it's our responsibility to free it
 
 	var retval C.int
 
